@@ -4,7 +4,7 @@ import cv2
 
 
 def cargarGrafico():
-    img = cv2.imread("MapaCocha1.png")
+    img = cv2.imread("MapaCocha7.png")
     # lista=listaRecorrido
     # dist=0
     # tiempo=0
