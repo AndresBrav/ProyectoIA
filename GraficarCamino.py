@@ -1,85 +1,84 @@
 import cv2
 
 # def cargarGrafico(listaRecorrido):
-from Productos import *
-import tkinter as tk
-from tkinter import simpledialog
+# from Productos import *
+# import tkinter as tk
+# from tkinter import simpledialog
 
 
-""" el usuario introduce cuánto dinero tendrá
-el agente para el transporte(Tanto de ida, y vuelta), que productos debe comprar. Y
-también el usuario introduce el tiempo que debe tardar en su compra. """
-dinero_Disponible = 0
-listaProductos = []
-tiempo_De_Compra = 0
+# """ el usuario introduce cuánto dinero tendrá
+# el agente para el transporte(Tanto de ida, y vuelta), que productos debe comprar. Y
+# también el usuario introduce el tiempo que debe tardar en su compra. """
+# dinero_Disponible = 0
+# listaProductos = []
+# tiempo_De_Compra = 0
 
 
-# Función para ingresar datos
-def ingresar_datos():
-    try:
-        global dinero_Disponible
-        dinero_Disponible = simpledialog.askfloat(
-            "Ingreso de datos", "Por favor, ingresa el dinero disponible para el viaje"
-        )
+# # Función para ingresar datos
+# def ingresar_datos():
+#     try:
+#         global dinero_Disponible
+#         dinero_Disponible = simpledialog.askfloat(
+#             "Ingreso de datos", "Por favor, ingresa el dinero disponible para el viaje"
+#         )
 
-        # Crear una lista para almacenar las cantidades de productos
-        global listaProductos
-        listaProductos = []
+#         # Crear una lista para almacenar las cantidades de productos
+#         global listaProductos
+#         listaProductos = []
 
-        # Solicitar al usuario que ingrese la cantidad de productos
-        while True:
-            producto = simpledialog.askstring(
-                "Ingreso de datos",
-                "Por favor, ingresa el producto (o introduce la palabra (stop) para terminar):",
-            )
+#         # Solicitar al usuario que ingrese la cantidad de productos
+#         while True:
+#             producto = simpledialog.askstring(
+#                 "Ingreso de datos",
+#                 "Por favor, ingresa el producto (o introduce la palabra (stop) para terminar):",
+#             )
 
-            # Si el producto  es stop, salir del bucle
-            if producto == "stop":
-                break
-            # Agregar el producto a  a la lista
-            listaProductos.append(str(producto))
+#             # Si el producto  es stop, salir del bucle
+#             if producto == "stop":
+#                 break
+#             # Agregar el producto a  a la lista
+#             listaProductos.append(str(producto))
 
-        global tiempo_De_Compra
-        tiempo_De_Compra = simpledialog.askfloat(
-            "Ingreso de datos",
-            "Por favor, ingresa el tiempo que vas a tardar en comprar en minutos:",
-        )
-        # print(dinero_Disponible,listaProductos,tiempo_De_Compra)
-    except (ValueError, TypeError):
-        print("Error: Ingresa un valor numérico válido.")
-
-
-# Crear una ventana principal
-ventana = tk.Tk()
-ventana.title("Ejemplo de Ingreso de Datos")
-# Modificar el tamaño de la ventana
-ventana.geometry("400x300")
-# Cambiar el color de fondo de la ventana
-ventana.configure(bg="#FFFFFF")
-
-# Crear un botón que llame a la función al hacer clic
-boton_ingresar = tk.Button(
-    ventana,
-    text="Ingresar Datos",
-    command=ingresar_datos,
-    font=("Arial", 14),
-    bg="#FFFFFF",  # Cambiar el color de fondo del botón
-    fg="black",  # Cambiar el color del texto del botón
-    padx=20,  # Añadir relleno horizontal
-    pady=10,  # Añadir relleno vertical)
-)
-boton_ingresar.pack(pady=20)
+#         global tiempo_De_Compra
+#         tiempo_De_Compra = simpledialog.askfloat(
+#             "Ingreso de datos",
+#             "Por favor, ingresa el tiempo que vas a tardar en comprar en minutos:",
+#         )
+#         # print(dinero_Disponible,listaProductos,tiempo_De_Compra)
+#     except (ValueError, TypeError):
+#         print("Error: Ingresa un valor numérico válido.")
 
 
-# Ejemplo de uso
-ventana.mainloop()
+# # Crear una ventana principal
+# ventana = tk.Tk()
+# ventana.title("Ejemplo de Ingreso de Datos")
+# # Modificar el tamaño de la ventana
+# ventana.geometry("400x300")
+# # Cambiar el color de fondo de la ventana
+# ventana.configure(bg="#FFFFFF")
+
+# # Crear un botón que llame a la función al hacer clic
+# boton_ingresar = tk.Button(
+#     ventana,
+#     text="Ingresar Datos",
+#     command=ingresar_datos,
+#     font=("Arial", 14),
+#     bg="#FFFFFF",  # Cambiar el color de fondo del botón
+#     fg="black",  # Cambiar el color del texto del botón
+#     padx=20,  # Añadir relleno horizontal
+#     pady=10,  # Añadir relleno vertical)
+# )
+# boton_ingresar.pack(pady=20)
+# # Ejemplo de uso
+# ventana.mainloop()
 
 
-print(dinero_Disponible)
-print(listaProductos)
-print(tiempo_De_Compra)
+# print(dinero_Disponible)
+# print(listaProductos)
+# print(tiempo_De_Compra)
 
 
+# def cargarGrafico(numero):
 def cargarGrafico():
     img = cv2.imread("MapaCocha7.png")
     # lista=listaRecorrido
@@ -182,6 +181,8 @@ def GraficarRuta2LaPampa(img):
     Punata17(img)
     Punata19(img)
     Barrientos14(img)
+    AgustinLopez8(img)
+    AgustinLopez14(img)
 
 
 def GraficarRuta3SanAntonio(img):
@@ -267,6 +268,7 @@ def GraficarRuta5SanAntonio(img):
     Punata8(img)
     Punata9(img)
     Punata10(img)
+    AgustinLopez14(img)
 
 
 def GraficarRuta5LaPampa(img):
@@ -323,6 +325,7 @@ def GraficarRuta5LaPampa(img):
     Punata17(img)
     Punata19(img)
     Barrientos14(img)
+    AgustinLopez14(img)
 
 
 def FrVal(img):
@@ -880,7 +883,7 @@ def AgustinLopez7(img):
 
 
 def AgustinLopez8(img):
-    pintarvertical(img, 135, 25, 340, 20)
+    pintarverticalNaranja(img, 135, 25, 340, 20)
 
 
 def AgustinLopez9(img):
@@ -904,7 +907,7 @@ def AgustinLopez13(img):
 
 
 def AgustinLopez14(img):
-    pintarvertical(img, 135, 25, 570, 20)
+    pintarverticalNaranja(img, 135, 25, 570, 20)
 
 
 def AgustinLopez15(img):
@@ -1253,6 +1256,6 @@ def pintarverticalNegro(img, iniX, largo, iniY, ancho):
         print("error")
 
 
-cargarGrafico()
+# cargarGrafico()
 
 # pip install opencv-python tienes que instalar
