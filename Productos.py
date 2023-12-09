@@ -15,3 +15,6 @@ class Producto:
 
     def Comprar(self, cantidadCoprada):
         self.cantidad = self.cantidad - cantidadCoprada
+
+    def __str__(self):
+            return f"Producto(nombre={self.NombreProducto}, cantidad={self.cantidad}, precio_unitario={self.PrecioUnitario})"

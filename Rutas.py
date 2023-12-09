@@ -31,9 +31,9 @@ class Rutas:
 
 # from Rutas import *
 # Crear una instancia de la clase Rutas
-ruta_1 = Rutas("Ruta A", 30, 5000, 2.5)
-# Utilizar setters para actualizar algunos valores
-ruta_1.set_tiempo_recorrido(40)
-ruta_1.set_pasaje(3.0)
-print(ruta_1.get_distancia_metros(),ruta_1.get_pasaje())
+# ruta_1 = Rutas("Ruta A", 30, 5000, 2.5)
+# # Utilizar setters para actualizar algunos valores
+# ruta_1.set_tiempo_recorrido(40)
+# ruta_1.set_pasaje(3.0)
+# print(ruta_1.get_distancia_metros(),ruta_1.get_pasaje())
 
