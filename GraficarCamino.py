@@ -3,22 +3,13 @@ from Agentes.AgenteComprador import *
 
 
 # def cargarGrafico(numero):
-def cargarGrafico():
+def cargarGrafico(primerRuta,SegundaRuta):
     img = cv2.imread("MapaCocha7.png")
-    
-    agentecompra = AgenteComprador("andres", "Fidel Aranibar", 900, 45)
-    agentecompra.agregar_Productos("carne")
-    agentecompra.agregar_Productos("juguete")
 
-    listaprueba = agentecompra.obtener_Lista_Productos()
-
-    ruta1, ruta2 = agentecompra.DesplazamientoIda()
-
-    print("la ruta 1 es " + ruta1, "la ruta 2 es ", ruta2)
+    # print("la primerRuta es : ",primerRuta,"la segundaRuta es : ",SegundaRuta)
 
     try:
-        # GraficarCuadrantes(img)
-        GraficarRutas(img)
+        GraficarRutas(img,primerRuta,SegundaRuta)
     except Exception:
         print("problemas al graficar")
 
@@ -27,13 +18,18 @@ def cargarGrafico():
     cv2.destroyAllWindows()
 
 
-def GraficarRutas(img):
+def GraficarRutas(img,primerRuta,SegundaRuta):
+    if(primerRuta == "ruta4" and SegundaRuta == "ruta5LaPampa"):
+        GraficarRuta4(img)
+        GraficarRuta5LaPampa(img)
+
+
     # GraficarRuta1(img)
     # GraficarRuta2LaPampa(img)
     # GraficarRuta3SanAntonio(img)
     # GraficarRuta4(img)
     # GraficarRuta4FidelAranibar(img)
-    GraficarRuta5SanAntonio(img)
+    # GraficarRuta5SanAntonio(img)
     # GraficarRuta5LaPampa(img)
 
 
@@ -1188,6 +1184,6 @@ def pintarverticalNegro(img, iniX, largo, iniY, ancho):
         print("error")
 
 
-cargarGrafico()
+# cargarGrafico()
 
 # pip install opencv-python tienes que instalar

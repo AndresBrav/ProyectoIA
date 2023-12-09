@@ -2,6 +2,7 @@ import sys
 
 sys.path.append("c:/Users/ASUS/Desktop/PoyectoIA")  # Ajusta la ruta según tu entorno
 from Rutas import *
+from AgenteChofer import *
 
 
 class AgenteComprador:
@@ -9,12 +10,26 @@ class AgenteComprador:
         """instanciamos las rutas que vamos usar"""
         # Rutas(nombre,tiempoRecorridoMinutos,distanciaMetros,pasaje)
         self.Ruta1 = Rutas("graficarRuta1", 34, 1700, 1.7)
+        # self.condutorRuta1 = AgenteChofer("Jose", "graficarRuta1")
+
         self.Ruta2LaPampa = Rutas("ruta2LaPampa", 58, 2900, 2.9)
+        # self.conductorRuta2LaPampa = AgenteChofer("Alex", "ruta2LaPampa")
+
         self.Ruta3SanAntonio = Rutas("ruta3SanAntonio", 20, 1000, 1)
+        # self.conductorRuta3SanAntonio = AgenteChofer("Alex", "ruta3SanAntonio")
+
         self.Ruta4 = Rutas("ruta4", 8, 400, 0.4)
+        # self.conductorRuta4 = AgenteChofer("Jurgen", "ruta4")
+
         self.Ruta4FidelAranibar = Rutas("ruta4FidelAranibar", 24, 1200, 1.2)
+        # self.conductorRuta4FidelAranibar = AgenteChofer("Paolo", "ruta4FidelAranibar")
+
         self.Ruta5SanAntonio = Rutas("ruta5SanAntonio", 80, 4000, 4)
+        # self.conductorRuta5SanAntonio = AgenteChofer("Paolo", "ruta5SanAntonio")
+
         self.Ruta5LaPampa = Rutas("ruta5LaPampa", 98, 4900, 4.9)
+        # self.conductorRuta5LaPampa = AgenteChofer("Paolo", "ruta5LaPampa")
+
         self.nombre = nombre
         self.mercadoObjetivo = mercadoObjetivo
         self.dinero_Disponible = dinero_Disponible
@@ -27,43 +42,103 @@ class AgenteComprador:
     def DesplazamientoIda(self):
         nombreRuta1 = ""
         nombreRuta2 = ""
-
         if self.mercadoObjetivo == "La Pampa":
             if (self.Ruta1.get_pasaje() > self.Ruta4.get_pasaje()) or (
                 self.Ruta1.get_tiempo_recorrido() > self.Ruta4.get_tiempo_recorrido()
             ):
+                """avanzar conductor"""
+                # self.conductorRuta4.Avanzar()
+
                 nombreRuta1 = str(self.Ruta4.get_nombre())
+                self.dinero_Disponible = (
+                    self.dinero_Disponible - self.Ruta4.get_pasaje()
+                )
+                """ detener avance """
+                # self.conductorRuta4.Detenerse()
+
+                """ pagar al condutor """
+                # self.conductorRuta4.CobrarDinero(self.Ruta4.get_pasaje())
+
             else:
                 nombreRuta1 = str(self.Ruta1.get_nombre())
+                self.dinero_Disponible = (
+                    self.dinero_Disponible - self.Ruta1.get_pasaje()
+                )
+                """ pagar al condutor """
+                # self.condutorRuta1.CobrarDinero(self.Ruta1.get_pasaje())
 
             if nombreRuta1 == "graficarRuta1":
                 nombreRuta2 = str(self.Ruta2LaPampa.get_nombre())
+                self.dinero_Disponible = (
+                    self.dinero_Disponible - self.Ruta2LaPampa.get_pasaje()
+                )
+                """ pagar al condutor """
+                # self.conductorRuta2LaPampa.CobrarDinero(self.Ruta2LaPampa.get_pasaje())
+
             else:
                 nombreRuta2 = str(self.Ruta5LaPampa.get_nombre())
+                self.dinero_Disponible = (
+                    self.dinero_Disponible - self.Ruta5LaPampa.get_pasaje()
+                )
+                """ pagar al condutor """
+                # self.conductorRuta5LaPampa.CobrarDinero(self.Ruta5LaPampa.get_pasaje())
 
         if self.mercadoObjetivo == "San Antonio":
             if (self.Ruta1.get_pasaje() > self.Ruta4.get_pasaje()) or (
                 self.Ruta1.get_tiempo_recorrido() > self.Ruta4.get_tiempo_recorrido()
             ):
                 nombreRuta1 = str(self.Ruta4.get_nombre())
+                self.dinero_Disponible = (
+                    self.dinero_Disponible - self.Ruta4.get_pasaje()
+                )
+                """ pagar al condutor """
+                # self.conductorRuta4.CobrarDinero(self.Ruta4.get_pasaje())
             else:
                 nombreRuta1 = str(self.Ruta1.get_nombre())
+                self.dinero_Disponible = (
+                    self.dinero_Disponible - self.Ruta1.get_pasaje()
+                )
+                """ pagar al condutor """
+                # self.condutorRuta1.CobrarDinero(self.Ruta1.get_pasaje())
 
             if nombreRuta1 == "graficarRuta1":
-                nombreRuta2= str(self.ruta3SanAntonio.get_nombre())
+                nombreRuta2 = str(self.ruta3SanAntonio.get_nombre())
+                self.dinero_Disponible = (
+                    self.dinero_Disponible - self.Ruta3SanAntonio.get_pasaje()
+                )
+                """ pagar al condutor """
+                # self.conductorRuta3SanAntonio.CobrarDinero(
+                #     self.Ruta3SanAntonio.get_pasaje()
+                # )
             else:
-                nombreRuta2=str(self.Ruta5SanAntonio.get_nombre())
-        
+                nombreRuta2 = str(self.Ruta5SanAntonio.get_nombre())
+                self.dinero_Disponible = (
+                    self.dinero_Disponible - self.Ruta5SanAntonio.get_pasaje()
+                )
+                """ pagar al condutor """
+                # self.conductorRuta5SanAntonio.CobrarDinero(
+                #     self.Ruta5SanAntonio.get_pasaje()
+                # )
+
         if self.mercadoObjetivo == "Fidel Aranibar":
             nombreRuta1 = str(self.Ruta4.get_nombre())
             nombreRuta2 = str(self.Ruta4FidelAranibar.get_nombre())
+            self.dinero_Disponible = self.dinero_Disponible - self.Ruta4.get_pasaje()
+            self.dinero_Disponible = (
+                self.dinero_Disponible - self.Ruta4FidelAranibar.get_pasaje()
+            )
+            """ pagar al condutor """
+            self.conductorRuta4.CobrarDinero(self.Ruta4.get_pasaje())
+            # self.conductorRuta4FidelAranibar.CobrarDinero(
+            #     self.Ruta4FidelAranibar.get_pasaje()
+            # )
 
         return nombreRuta1, nombreRuta2
 
-    """ se agrega un producto a la lista """
+    """ agregar una lista de productos a la lista """
 
-    def agregar_Productos(self, producto_A_Comprar):
-        self.listaProductos.append(str(producto_A_Comprar))
+    def agregar_Productos(self, Lista_de_producto_A_Comprar):
+        self.listaProductos = Lista_de_producto_A_Comprar
 
     """ se obtiene la lista de productos que va comprar el agente """
 
@@ -76,4 +151,3 @@ class AgenteComprador:
             f"dinero_Disponible={self.dinero_Disponible}, tiempo_De_Compra={self.tiempo_De_Compra}, "
             f"listaProductos={self.listaProductos})"
         )
-

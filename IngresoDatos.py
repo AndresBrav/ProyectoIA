@@ -1,4 +1,4 @@
-from GraficarCamino import cargarGrafico
+from GraficarCamino import *
 from Rutas import *
 from Productos import *
 from Mercado import *
@@ -13,6 +13,7 @@ también el usuario introduce el tiempo que debe tardar en su compra. """
 dinero_Disponible = 0
 listaProductos = []
 tiempo_De_Compra = 0
+Mercado_Objetivo = ""
 
 
 # Función para ingresar datos
@@ -45,7 +46,13 @@ def ingresar_datos():
             "Ingreso de datos",
             "Por favor, ingresa el tiempo que va tardar toda la compra:",
         )
-        # print(dinero_Disponible,listaProductos,tiempo_De_Compra)
+
+        global Mercado_Objetivo
+        Mercado_Objetivo = simpledialog.askstring(
+            "Ingreso de datos",
+            "Por favor, ingresa el Mercado donde vas a realizar la compra",
+        )
+
     except (ValueError, TypeError):
         print("Error: Ingresa un valor numérico válido.")
 
@@ -73,6 +80,17 @@ boton_ingresar.pack(pady=20)
 # Ejemplo de uso
 ventana.mainloop()
 
+print("el mercado objetivo es " + Mercado_Objetivo)
+
+agentecompra = AgenteComprador(
+    "Andres", Mercado_Objetivo, dinero_Disponible, tiempo_De_Compra
+)
+agentecompra.agregar_Productos(listaProductos)
+
+primerRuta,segundaRuta=agentecompra.DesplazamientoIda()
+# print(Mercado_Objetivo,dinero_Disponible,tiempo_De_Compra)
+# print(agentecompra.obtener_Lista_Productos())
+
 
 # Crear la ventana principal de los detalles de compra que se va hacer
 detalles = tk.Tk()
@@ -84,6 +102,7 @@ detalles.geometry("400x300")
 mensaje1 = "el dinero disponible es : " + str(dinero_Disponible)
 mensaje2 = f"Los productos que se quiere comprar son : {listaProductos}"
 mensaje3 = "el tiempo disponible en minutos  es : " + str(tiempo_De_Compra)
+mensaje4 = "El mercado objetivo es : "+str(Mercado_Objetivo)
 
 # Etiquetas con los mensajes
 label1 = tk.Label(detalles, text=mensaje1)
@@ -95,30 +114,12 @@ label2.pack()
 label3 = tk.Label(detalles, text=mensaje3)
 label3.pack()
 
+label4 = tk.Label(detalles, text=mensaje4)
+label4.pack()
+
 # Iniciar el bucle de eventos
 detalles.mainloop()
 
-# agentecompra = AgenteComprador("andres", "la pampa", 900, 45)
-# agentecompra.agregar_Productos("carne")
-# agentecompra.agregar_Productos("juguete")
-
-# listaprueba = agentecompra.obtener_Lista_Productos()
-
-# print(agentecompra.Ruta1)
-
-# print(dinero_Disponible)
-# print(listaProductos)
-# print(tiempo_De_Compra)
-
-"""instanciamos las rutas que vamos usar"""
-# Rutas(nombre,tiempoRecorridoMinutos,distanciaMetros,pasaje)
-Ruta1 = Rutas("graficarRuta1", 34, 1700, 1.7)
-Ruta2LaPampa = Rutas("ruta2LaPampa", 58, 2900, 2.9)
-Ruta3SanAntonio = Rutas("ruta3SanAntonio", 20, 1000, 1)
-Ruta4 = Rutas("ruta4", 8, 400, 0.4)
-Ruta4FidelAranibar = Rutas("ruta4FidelAranibar", 24, 1200, 1.2)
-Ruta5SanAntonio = Rutas("ruta5SanAntonio", 80, 4000, 4)
-Ruta5LaPampa = Rutas("ruta5LaPampa", 98, 4900, 4.9)
 
 """ instanciamos los mercados """
 listaLaPampa = []
@@ -149,12 +150,13 @@ listaFidelAranibar = [Saco, Corbata, Juguete, Torta]
 
 mercado_La_Pampa = Mercado("La Pampa", listaLaPampa)
 mercado_San_Antonio = Mercado("San Antonio", listaSanAntonio)
+mercado_Fidel_Aranibar = Mercado("Fidel Aranibar",listaFidelAranibar)
 
-nuevalistapampa = mercado_La_Pampa.obtener_Lista_Productos()
-print(nuevalistapampa[1].get_nombre())
+# nuevalistapampa = mercado_La_Pampa.obtener_Lista_Productos()
+# print(nuevalistapampa[1].get_nombre())
 
-nuevalistaSanAntonio = mercado_San_Antonio.obtener_Lista_Productos()
-print(nuevalistaSanAntonio[1].get_nombre())
+# nuevalistaSanAntonio = mercado_San_Antonio.obtener_Lista_Productos()
+# print(nuevalistaSanAntonio[1].get_nombre())
 
 
-cargarGrafico()
+cargarGrafico(primerRuta,segundaRuta)
