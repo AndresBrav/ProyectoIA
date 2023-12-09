@@ -29,11 +29,9 @@ class Rutas:
     def set_pasaje(self, nuevo_pasaje):
         self.pasaje = nuevo_pasaje
 
-# from Rutas import *
-# Crear una instancia de la clase Rutas
-# ruta_1 = Rutas("Ruta A", 30, 5000, 2.5)
-# # Utilizar setters para actualizar algunos valores
-# ruta_1.set_tiempo_recorrido(40)
-# ruta_1.set_pasaje(3.0)
-# print(ruta_1.get_distancia_metros(),ruta_1.get_pasaje())
+    def __str__(self):
+        return f"Ruta: {self.nombre}\nTiempo Recorrido: {self.tiempo_recorrido} horas\n" \
+               f"Distancia: {self.distancia_metros} metros\nPasaje: {self.pasaje}"
+
+
 

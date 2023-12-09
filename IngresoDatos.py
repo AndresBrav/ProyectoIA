@@ -2,6 +2,7 @@ from GraficarCamino import cargarGrafico
 from Rutas import *
 from Productos import *
 from Mercado import *
+from Agentes.AgenteComprador import *
 import tkinter as tk
 from tkinter import simpledialog
 
@@ -36,13 +37,13 @@ def ingresar_datos():
             # Si el producto  es stop, salir del bucle
             if producto == "stop":
                 break
-            # Agregar el producto a  a la lista
+            # Agregar el producto a   la lista
             listaProductos.append(str(producto))
 
         global tiempo_De_Compra
         tiempo_De_Compra = simpledialog.askfloat(
             "Ingreso de datos",
-            "Por favor, ingresa el tiempo que vas a tardar en comprar en minutos:",
+            "Por favor, ingresa el tiempo que va tardar toda la compra:",
         )
         # print(dinero_Disponible,listaProductos,tiempo_De_Compra)
     except (ValueError, TypeError):
@@ -72,6 +73,38 @@ boton_ingresar.pack(pady=20)
 # Ejemplo de uso
 ventana.mainloop()
 
+
+# Crear la ventana principal de los detalles de compra que se va hacer
+detalles = tk.Tk()
+# Establecer la posición inicial de la ventana
+detalles.geometry("+1100+300")
+# Modificar el tamaño de la ventana
+detalles.geometry("400x300")
+# Mensajes
+mensaje1 = "el dinero disponible es : " + str(dinero_Disponible)
+mensaje2 = f"Los productos que se quiere comprar son : {listaProductos}"
+mensaje3 = "el tiempo disponible en minutos  es : " + str(tiempo_De_Compra)
+
+# Etiquetas con los mensajes
+label1 = tk.Label(detalles, text=mensaje1)
+label1.pack()
+
+label2 = tk.Label(detalles, text=mensaje2)
+label2.pack()
+
+label3 = tk.Label(detalles, text=mensaje3)
+label3.pack()
+
+# Iniciar el bucle de eventos
+detalles.mainloop()
+
+# agentecompra = AgenteComprador("andres", "la pampa", 900, 45)
+# agentecompra.agregar_Productos("carne")
+# agentecompra.agregar_Productos("juguete")
+
+# listaprueba = agentecompra.obtener_Lista_Productos()
+
+# print(agentecompra.Ruta1)
 
 # print(dinero_Disponible)
 # print(listaProductos)
@@ -111,11 +144,11 @@ Corbata = Producto("guitarra", 20, 25)
 Juguete = Producto("hilos", 100, 90)
 Torta = Producto("zapatos", 50, 30)
 
-listaFidelAranibar = [Saco,Corbata,Juguete,Torta]
+listaFidelAranibar = [Saco, Corbata, Juguete, Torta]
 
 
 mercado_La_Pampa = Mercado("La Pampa", listaLaPampa)
-mercado_San_Antonio=Mercado("San Antonio",listaSanAntonio)
+mercado_San_Antonio = Mercado("San Antonio", listaSanAntonio)
 
 nuevalistapampa = mercado_La_Pampa.obtener_Lista_Productos()
 print(nuevalistapampa[1].get_nombre())
