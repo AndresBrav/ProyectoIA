@@ -1,5 +1,5 @@
 import cv2
-from Agentes.AgenteComprador import *
+# from Agentes.AgenteComprador import *
 
 
 # def cargarGrafico(numero):

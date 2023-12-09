@@ -1,8 +1,13 @@
-from GraficarCamino import *
+import sys
+
+sys.path.append("c:/Users/ASUS/Desktop/PoyectoIA/Agentes")
+from Agentes.AgenteComprador import *
+from GraficarCamino import cargarGrafico
 from Rutas import *
 from Productos import *
 from Mercado import *
-from Agentes.AgenteComprador import *
+
+# from Agentes.AgenteComprador import *
 import tkinter as tk
 from tkinter import simpledialog
 
@@ -87,7 +92,7 @@ agentecompra = AgenteComprador(
 )
 agentecompra.agregar_Productos(listaProductos)
 
-primerRuta,segundaRuta=agentecompra.DesplazamientoIda()
+primerRuta, segundaRuta = agentecompra.DesplazamientoIda()
 # print(Mercado_Objetivo,dinero_Disponible,tiempo_De_Compra)
 # print(agentecompra.obtener_Lista_Productos())
 
@@ -102,7 +107,7 @@ detalles.geometry("400x300")
 mensaje1 = "el dinero disponible es : " + str(dinero_Disponible)
 mensaje2 = f"Los productos que se quiere comprar son : {listaProductos}"
 mensaje3 = "el tiempo disponible en minutos  es : " + str(tiempo_De_Compra)
-mensaje4 = "El mercado objetivo es : "+str(Mercado_Objetivo)
+mensaje4 = "El mercado objetivo es : " + str(Mercado_Objetivo)
 
 # Etiquetas con los mensajes
 label1 = tk.Label(detalles, text=mensaje1)
@@ -150,7 +155,7 @@ listaFidelAranibar = [Saco, Corbata, Juguete, Torta]
 
 mercado_La_Pampa = Mercado("La Pampa", listaLaPampa)
 mercado_San_Antonio = Mercado("San Antonio", listaSanAntonio)
-mercado_Fidel_Aranibar = Mercado("Fidel Aranibar",listaFidelAranibar)
+mercado_Fidel_Aranibar = Mercado("Fidel Aranibar", listaFidelAranibar)
 
 # nuevalistapampa = mercado_La_Pampa.obtener_Lista_Productos()
 # print(nuevalistapampa[1].get_nombre())
@@ -159,4 +164,4 @@ mercado_Fidel_Aranibar = Mercado("Fidel Aranibar",listaFidelAranibar)
 # print(nuevalistaSanAntonio[1].get_nombre())
 
 
-cargarGrafico(primerRuta,segundaRuta)
+cargarGrafico(primerRuta, segundaRuta)
