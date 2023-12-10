@@ -96,6 +96,7 @@ agentecompra.agregar_Productos(listaProductos)
 primerRuta, segundaRuta = agentecompra.DesplazamientoIda()
 
 dineroViajeIda = agentecompra.obteneDineroGastado()
+tiempoUsado = agentecompra.ObtenerTiempoUsado()
 
 # print(Mercado_Objetivo,dinero_Disponible,tiempo_De_Compra)
 # print(agentecompra.obtener_Lista_Productos())
@@ -113,6 +114,7 @@ mensaje2 = f"Los productos que se quiere comprar son : {listaProductos}"
 mensaje3 = "el tiempo disponible en minutos  es : " + str(tiempo_De_Compra)
 mensaje4 = "El mercado objetivo es : " + str(Mercado_Objetivo)
 mensaje5 = "El dinero gastado en la ida es " + str(dineroViajeIda) + " Bs"
+mensaje7 = "El tiempo de ida usado es : " + str(tiempoUsado) +" minutos"
 
 # Etiquetas con los mensajes
 label1 = tk.Label(detalles, text=mensaje1)
@@ -127,8 +129,11 @@ label3.pack()
 label4 = tk.Label(detalles, text=mensaje4)
 label4.pack()
 
-label5 = tk.Label(detalles, text=mensaje5)
-label5.pack()
+label6 = tk.Label(detalles, text="")
+label6.pack()
+
+label7 = tk.Label(detalles, text=mensaje7)
+label7.pack()
 
 # Iniciar el bucle de eventos
 detalles.mainloop()

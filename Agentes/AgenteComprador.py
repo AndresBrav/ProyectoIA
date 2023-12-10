@@ -36,7 +36,15 @@ class AgenteComprador:
         self.dinero_Disponible = dinero_Disponible
         self.tiempo_De_Compra = tiempo_De_Compra
         self.listaProductos = []
+
         self.dineroGastado = 0
+        self.tiempoUsado = 0
+
+    def ObtenerTiempoUsado(self):
+        return self.tiempoUsado
+
+    def aumentarTiempo(self, incremento):
+        self.tiempoUsado = self.tiempoUsado + incremento
 
     def obteneDineroGastado(self):
         return self.dineroGastado
@@ -50,7 +58,7 @@ class AgenteComprador:
     def DesplazamientoIda(self):
         nombreRuta1 = ""
         nombreRuta2 = ""
-        if self.dinero_Disponible > 0:
+        if ((self.dinero_Disponible > 0) and (self.tiempoUsado < self.tiempo_De_Compra)):
             if self.mercadoObjetivo == "La Pampa":
                 if (self.Ruta1.get_pasaje() > self.Ruta4.get_pasaje()) or (
                     self.Ruta1.get_tiempo_recorrido()
@@ -64,6 +72,7 @@ class AgenteComprador:
                         self.dinero_Disponible - self.Ruta4.get_pasaje()
                     )
                     self.aumentarGasto(self.Ruta4.get_pasaje())
+                    self.aumentarTiempo(self.Ruta4.get_tiempo_recorrido())
                     """ detener avance """
                     self.conductorRuta4.Detenerse()
 
@@ -79,6 +88,7 @@ class AgenteComprador:
                         self.dinero_Disponible - self.Ruta1.get_pasaje()
                     )
                     self.aumentarGasto(self.Ruta1.get_pasaje())
+                    self.aumentarTiempo(self.Ruta1.get_tiempo_recorrido())
                     """ detener avance """
                     self.condutorRuta1.Detenerse()
                     """ pagar al condutor """
@@ -92,6 +102,7 @@ class AgenteComprador:
                         self.dinero_Disponible - self.Ruta2LaPampa.get_pasaje()
                     )
                     self.aumentarGasto(self.Ruta2LaPampa.get_pasaje())
+                    self.aumentarTiempo(self.Ruta2LaPampa.get_tiempo_recorrido())
                     """ detener avance """
                     self.conductorRuta2LaPampa.Detenerse()
                     """ pagar al condutor """
@@ -107,6 +118,7 @@ class AgenteComprador:
                         self.dinero_Disponible - self.Ruta5LaPampa.get_pasaje()
                     )
                     self.aumentarGasto(self.Ruta5LaPampa.get_pasaje())
+                    self.aumentarTiempo(self.Ruta5LaPampa.get_tiempo_recorrido())
                     """ detener avance """
                     self.conductorRuta5LaPampa.Detenerse()
 
@@ -127,6 +139,7 @@ class AgenteComprador:
                         self.dinero_Disponible - self.Ruta4.get_pasaje()
                     )
                     self.aumentarGasto(self.Ruta4.get_pasaje())
+                    self.aumentarTiempo(self.Ruta4.get_tiempo_recorrido())
                     """ detener avance """
                     self.conductorRuta4.Detenerse()
 
@@ -140,6 +153,7 @@ class AgenteComprador:
                         self.dinero_Disponible - self.Ruta1.get_pasaje()
                     )
                     self.aumentarGasto(self.Ruta1.get_pasaje())
+                    self.aumentarTiempo(self.Ruta1.get_tiempo_recorrido())
                     """ detener avance """
                     self.conductorRuta1.Detenerse()
 
@@ -155,6 +169,7 @@ class AgenteComprador:
                         self.dinero_Disponible - self.Ruta3SanAntonio.get_pasaje()
                     )
                     self.aumentarGasto(self.Ruta3SanAntonio.get_pasaje())
+                    self.aumentarTiempo(self.Ruta3SanAntonio.get_tiempo_recorrido())
                     """ detener avance """
                     self.conductorRuta3SanAntonio.Detenerse()
 
@@ -169,7 +184,8 @@ class AgenteComprador:
                     self.dinero_Disponible = (
                         self.dinero_Disponible - self.Ruta5SanAntonio.get_pasaje()
                     )
-                    self.aumentarGasto(self.conductorRuta5SanAntonio.get_pasaje())
+                    self.aumentarGasto(self.Ruta5SanAntonio.get_pasaje())
+                    self.aumentarTiempo(self.Ruta5SanAntonio.get_tiempo_recorrido())
                     """ detener avance """
                     self.conductorRuta5SanAntonio.Detenerse()
 
@@ -194,6 +210,8 @@ class AgenteComprador:
                 )
                 self.aumentarGasto(self.Ruta4.get_pasaje())
                 self.aumentarGasto(self.Ruta4FidelAranibar.get_pasaje())
+                self.aumentarTiempo(self.Ruta4.get_tiempo_recorrido())
+                self.aumentarTiempo(self.Ruta4FidelAranibar.get_tiempo_recorrido())
                 """ detener avance """
                 self.conductorRuta4.Detenerse()
                 self.conductorRuta4FidelAranibar.Detenerse()
