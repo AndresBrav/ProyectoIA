@@ -43,24 +43,27 @@ class AgenteComprador:
     def ObtenerTiempoUsado(self):
         return self.tiempoUsado
 
-    #aumentar el tiempo que vas usando
+    # aumentar el tiempo que vas usando
     def aumentarTiempo(self, incremento):
         self.tiempoUsado = self.tiempoUsado + incremento
 
     def obteneDineroGastado(self):
         return self.dineroGastado
 
-    #aumentar el dinero que estas usando
+    # aumentar el dinero que estas usando
     def aumentarGasto(self, incremento):
         self.dineroGastado = self.dineroGastado + incremento
 
     def obtenerMercadoObjetivo(self):
         return self.mercadoObjetivo
+    
+    def ObtenerTiempoDeCompraIngresado(self):
+        return self.tiempo_De_Compra
 
     def DesplazamientoIda(self):
         nombreRuta1 = ""
         nombreRuta2 = ""
-        if ((self.dinero_Disponible > 0) and (self.tiempoUsado < self.tiempo_De_Compra)):
+        if (self.dinero_Disponible > 0) and (self.tiempoUsado < self.tiempo_De_Compra):
             if self.mercadoObjetivo == "La Pampa":
                 if (self.Ruta1.get_pasaje() > self.Ruta4.get_pasaje()) or (
                     self.Ruta1.get_tiempo_recorrido()
@@ -250,11 +253,13 @@ class AgenteComprador:
 
     def obtener_Lista_ProductosA_Comprar(self):
         return self.listaProductos
-    
-    def ComprarProducto(self,productoAcomprar):
-        if(self.dinero_Disponible > 0):
-            print()
-        
+
+    def ComprarProducto(self, precioProducto):
+        if ((self.dinero_Disponible > 0)):
+            self.aumentarGasto(precioProducto)
+            self.aumentarTiempo(0.5)  # aumenta el tiempo medio minuto por cada producto
+            print("el dinero gastado es ", str(self.obteneDineroGastado()))
+            print("el tiempo gastado es : ",str(self.tiempoUsado))
 
     def __str__(self):
         return (

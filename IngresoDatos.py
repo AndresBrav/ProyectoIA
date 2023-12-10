@@ -110,10 +110,24 @@ contador = 0
 tamañoDeLista = len(agentecompra.obtener_Lista_ProductosA_Comprar())
 # print("el tamaño de lista es : ",str(tamañoDeLista))
 while contador < tamañoDeLista:
-    mercadoComprador = agentecompra.obtenerMercadoObjetivo()
+    mercadoComprador = agentecompra.obtenerMercadoObjetivo() #mercado donde se realizara la compra
     mercadoVendedor = agenteVendedorLaPampa.get_Mercado_Que_Atiende()
     if mercadoComprador == mercadoVendedor:
-        print("la igualacion es : ", mercadoComprador)
+        productoAcomprar = agentecompra.obtener_Lista_ProductosA_Comprar()[contador] #muestra un producto de la lista
+        precioProducto = 0
+
+        """ Verificar que el producto esta en la lista  del Mercado"""
+        contador1 =0
+        while(contador1 < len(agenteVendedorLaPampa.get_lista_la_pampa())):
+            if(productoAcomprar == agenteVendedorLaPampa.get_lista_la_pampa()[contador1].get_nombre()):
+                precioProducto = agenteVendedorLaPampa.get_lista_la_pampa()[contador1].get_precio_unitario() #precio 
+                """ comprar el producto """
+                agentecompra.ComprarProducto(precioProducto)
+
+            contador1 = contador1 +1
+        
+        print("el precio del producto es ",precioProducto)
+        print("la producto a comprar es : ",productoAcomprar)
     contador = contador + 1
 
 
