@@ -7,7 +7,7 @@ from Mercado import *
 
 
 class AgenteVendedor:
-    def __init__(self, nombre_vendedor,mercadoQueAtiende):
+    def __init__(self, nombre_vendedor, mercadoQueAtiende):
         self.nombre_vendedor = nombre_vendedor
         self.dinero_recaudado = 0
         self.atender = False
@@ -32,13 +32,13 @@ class AgenteVendedor:
 
         self.listaFidelAranibar = []
         self.Saco = Productos("saco", 100, 350)
-        self.Corbata = Productos("guitarra", 20, 25)
-        self.Juguete = Productos("hilos", 100, 90)
-        self.Torta = Productos("zapatos", 50, 30)
+        self.Corbata = Productos("corbata", 20, 25)
+        self.Juguete = Productos("juguete", 100, 90)
+        self.Torta = Productos("torta", 50, 30)
 
         self.listaFidelAranibar = [self.Saco, self.Corbata, self.Juguete, self.Torta]
 
-    def aumentarDineroRecaudado(self,incremento):
+    def aumentarDineroRecaudado(self, incremento):
         self.dinero_recaudado = self.dinero_recaudado + incremento
 
     def obtenerDineroRecaudado(self):
@@ -57,7 +57,6 @@ class AgenteVendedor:
         self.atender = False
 
     # def venderProducto(self, producto):
-        
 
     # def cobrar(self, monto_cobro):
     #     print()
@@ -65,14 +64,13 @@ class AgenteVendedor:
     # Getter y setter para listaLaPampa
     def get_lista_la_pampa(self):
         return self.listaLaPampa
-    
+
     def get_lista_san_antonio(self):
         return self.listaSanAntonio
-    
-    def get_lista_fidel_Aranibar(self):
-        return self.listaSanAntonio
 
-    
+    def get_lista_fidel_Aranibar(self):
+        return self.listaFidelAranibar
+
+
 # agente1 = AgenteVendedor("juan", 15)
 # print(agente1.get_lista_la_pampa()[0].get_nombre())
-

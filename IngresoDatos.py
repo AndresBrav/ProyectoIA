@@ -100,9 +100,9 @@ primerRuta, segundaRuta = agentecompra.DesplazamientoIda()
 # tiempoUsado = agentecompra.ObtenerTiempoUsado()
 
 """ instanciamos los Agentes de Venta """
-agenteVendedorLaPampa = AgenteVendedor("juan", "La Pampa")
-agenteVendedorSanAntonio = AgenteVendedor("juan", "Fidel Aranibar")
-agenteVendedorFidelAranibar = AgenteVendedor("juan", "San Antonio")
+agenteVendedorLaPampa = AgenteVendedor("Juan", "La Pampa")
+agenteVendedorSanAntonio = AgenteVendedor("Paolo", "San Antonio")
+agenteVendedorFidelAranibar = AgenteVendedor("Kevin", "Fidel Aranibar")
 
 if "La Pampa" == agentecompra.obtenerMercadoObjetivo():
     """realizamos la compra en La Pampa"""
@@ -134,7 +134,7 @@ if "La Pampa" == agentecompra.obtenerMercadoObjetivo():
                     ].get_precio_unitario()  # precio
                     """ comprar el producto """
                     agenteVendedorLaPampa.AtenderCliente()
-                    agentecompra.ComprarProducto(precioProducto,productoAcomprar)
+                    agentecompra.ComprarProducto(precioProducto, productoAcomprar)
                     agenteVendedorLaPampa.aumentarDineroRecaudado(precioProducto)
                     agenteVendedorLaPampa.DejarAtenderCliente()
 
@@ -143,6 +143,91 @@ if "La Pampa" == agentecompra.obtenerMercadoObjetivo():
             print("el precio del producto es ", precioProducto)
             print("la producto a comprar es : ", productoAcomprar)
         contador = contador + 1
+
+if "San Antonio" == agentecompra.obtenerMercadoObjetivo():
+        """realizamos la compra en San Antonio"""
+        contador = 0
+        tamañoDeLista = len(agentecompra.obtener_Lista_ProductosA_Comprar())
+        # print("el tamaño de lista es : ",str(tamañoDeLista))
+        while contador < tamañoDeLista:
+            mercadoComprador = (
+                agentecompra.obtenerMercadoObjetivo()
+            )  # mercado donde se realizara la compra
+            mercadoVendedor = agenteVendedorSanAntonio.get_Mercado_Que_Atiende()
+            if mercadoComprador == mercadoVendedor:
+                productoAcomprar = agentecompra.obtener_Lista_ProductosA_Comprar()[
+                    contador
+                ]  # muestra un producto de la lista
+                precioProducto = 0
+
+                """ Verificar que el producto esta en la lista  del Mercado"""
+                contador1 = 0
+                while contador1 < len(agenteVendedorSanAntonio.get_lista_san_antonio()):
+                    if (
+                        productoAcomprar
+                        == agenteVendedorSanAntonio.get_lista_san_antonio()[
+                            contador1
+                        ].get_nombre()
+                    ):
+                        precioProducto = (
+                            agenteVendedorSanAntonio.get_lista_san_antonio()[
+                                contador1
+                            ].get_precio_unitario()
+                        )  # precio
+                        """ comprar el producto """
+                        agenteVendedorSanAntonio.AtenderCliente()
+                        agentecompra.ComprarProducto(precioProducto, productoAcomprar)
+                        agenteVendedorSanAntonio.aumentarDineroRecaudado(precioProducto)
+                        agenteVendedorSanAntonio.DejarAtenderCliente()
+
+                    contador1 = contador1 + 1
+
+                print("el precio del producto es ", precioProducto)
+                print("la producto a comprar es : ", productoAcomprar)
+            contador = contador + 1
+
+if "Fidel Aranibar" == agentecompra.obtenerMercadoObjetivo():
+        """realizamos la compra en Fidel Aranibar"""
+        contador = 0
+        tamañoDeLista = len(agentecompra.obtener_Lista_ProductosA_Comprar())
+        # print("el tamaño de lista es : ",str(tamañoDeLista))
+        while contador < tamañoDeLista:
+            mercadoComprador = (
+                agentecompra.obtenerMercadoObjetivo()
+            )  # mercado donde se realizara la compra
+            mercadoVendedor = agenteVendedorFidelAranibar.get_Mercado_Que_Atiende()
+            if mercadoComprador == mercadoVendedor:
+                productoAcomprar = agentecompra.obtener_Lista_ProductosA_Comprar()[
+                    contador
+                ]  # muestra un producto de la lista
+                precioProducto = 0
+
+                """ Verificar que el producto esta en la lista  del Mercado"""
+                contador1 = 0
+                while contador1 < len(agenteVendedorFidelAranibar.get_lista_fidel_Aranibar()):
+                    if (
+                        productoAcomprar
+                        == agenteVendedorFidelAranibar.get_lista_fidel_Aranibar()[
+                            contador1
+                        ].get_nombre()
+                    ):
+                        precioProducto = (
+                            agenteVendedorFidelAranibar.get_lista_fidel_Aranibar()[
+                                contador1
+                            ].get_precio_unitario()
+                        )  # precio
+                        """ comprar el producto """
+                        agenteVendedorFidelAranibar.AtenderCliente()
+                        agentecompra.ComprarProducto(precioProducto, productoAcomprar)
+                        agenteVendedorFidelAranibar.aumentarDineroRecaudado(precioProducto)
+                        agenteVendedorFidelAranibar.DejarAtenderCliente()
+
+                    contador1 = contador1 + 1
+
+                print("el precio del producto es ", precioProducto)
+                print("la producto a comprar es : ", productoAcomprar)
+            contador = contador + 1
+
 
 dineroGastado = agentecompra.obteneDineroGastado()
 tiempoUsado = agentecompra.ObtenerTiempoUsado()
