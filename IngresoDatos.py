@@ -2,6 +2,7 @@ import sys
 
 sys.path.append("c:/Users/ASUS/Desktop/PoyectoIA/Agentes")
 from Agentes.AgenteComprador import *
+from Agentes.AgenteChofer import *
 from GraficarCamino import cargarGrafico
 from Rutas import *
 from Productos import *
