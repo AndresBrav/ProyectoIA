@@ -43,12 +43,14 @@ class AgenteComprador:
     def ObtenerTiempoUsado(self):
         return self.tiempoUsado
 
+    #aumentar el tiempo que vas usando
     def aumentarTiempo(self, incremento):
         self.tiempoUsado = self.tiempoUsado + incremento
 
     def obteneDineroGastado(self):
         return self.dineroGastado
 
+    #aumentar el dinero que estas usando
     def aumentarGasto(self, incremento):
         self.dineroGastado = self.dineroGastado + incremento
 
@@ -246,8 +248,13 @@ class AgenteComprador:
 
     """ se obtiene la lista de productos que va comprar el agente """
 
-    def obtener_Lista_Productos(self):
+    def obtener_Lista_ProductosA_Comprar(self):
         return self.listaProductos
+    
+    def ComprarProducto(self,productoAcomprar):
+        if(self.dinero_Disponible > 0):
+            print()
+        
 
     def __str__(self):
         return (

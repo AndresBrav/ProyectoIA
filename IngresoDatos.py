@@ -38,7 +38,7 @@ def ingresar_datos():
         # Solicitar al usuario que ingrese la cantidad de productos
         contador = 0
         # while True:
-        while contador < 4 :
+        while contador < 4:
             producto = simpledialog.askstring(
                 "Ingreso de datos",
                 "Por favor, ingresa el producto (o introduce la palabra (stop) para terminar):",
@@ -49,7 +49,7 @@ def ingresar_datos():
                 break
             # Agregar el producto a   la lista
             listaProductos.append(str(producto))
-            contador = contador +1
+            contador = contador + 1
 
         global tiempo_De_Compra
         tiempo_De_Compra = simpledialog.askfloat(
@@ -90,22 +90,37 @@ boton_ingresar.pack(pady=20)
 # Ejemplo de uso
 ventana.mainloop()
 
-print("el mercado objetivo es " + Mercado_Objetivo)
-
+# Instanciamos el agente que va realizar la compra
 agentecompra = AgenteComprador(
     "Andres", Mercado_Objetivo, dinero_Disponible, tiempo_De_Compra
 )
 agentecompra.agregar_Productos(listaProductos)
-
 primerRuta, segundaRuta = agentecompra.DesplazamientoIda()
-
 dineroViajeIda = agentecompra.obteneDineroGastado()
 tiempoUsado = agentecompra.ObtenerTiempoUsado()
 
+""" instanciamos los Agentes de Venta """
+agenteVendedorLaPampa = AgenteVendedor("juan", "La Pampa")
+agenteVendedorSanAntonio = AgenteVendedor("juan", "Fidel Aranibar")
+agenteVendedorFidelAranibar = AgenteVendedor("juan", "San Antonio")
+
+
+""" realizamos la compra """
+contador = 0
+tamañoDeLista = len(agentecompra.obtener_Lista_ProductosA_Comprar())
+# print("el tamaño de lista es : ",str(tamañoDeLista))
+while contador < tamañoDeLista:
+    mercadoComprador = agentecompra.obtenerMercadoObjetivo()
+    mercadoVendedor = agenteVendedorLaPampa.get_Mercado_Que_Atiende()
+    if mercadoComprador == mercadoVendedor:
+        print("la igualacion es : ", mercadoComprador)
+    contador = contador + 1
+
+
+# print(agente1.get_lista_la_pampa()[0].get_nombre())
+
 # print(Mercado_Objetivo,dinero_Disponible,tiempo_De_Compra)
 # print(agentecompra.obtener_Lista_Productos())
-
-
 
 
 # Crear la ventana principal de los detalles de compra que se va hacer
@@ -120,7 +135,7 @@ mensaje2 = f"Los productos que se quiere comprar son : {listaProductos}"
 mensaje3 = "el tiempo disponible en minutos  es : " + str(tiempo_De_Compra)
 mensaje4 = "El mercado objetivo es : " + str(Mercado_Objetivo)
 mensaje5 = "El dinero gastado en la ida es " + str(dineroViajeIda) + " Bs"
-mensaje7 = "El tiempo de ida usado es : " + str(tiempoUsado) +" minutos"
+mensaje7 = "El tiempo de ida usado es : " + str(tiempoUsado) + " minutos"
 
 # Etiquetas con los mensajes
 label1 = tk.Label(detalles, text=mensaje1)
@@ -145,7 +160,6 @@ label7.pack()
 detalles.mainloop()
 
 
-
 # mercado_La_Pampa = Mercado("La Pampa", listaLaPampa)
 # mercado_San_Antonio = Mercado("San Antonio", listaSanAntonio)
 # mercado_Fidel_Aranibar = Mercado("Fidel Aranibar", listaFidelAranibar)
@@ -156,7 +170,5 @@ detalles.mainloop()
 # nuevalistaSanAntonio = mercado_San_Antonio.obtener_Lista_Productos()
 # print(nuevalistaSanAntonio[1].get_nombre())
 
-agente1 = AgenteVendedor("juan", 15)
-print(agente1.get_lista_la_pampa()[0].get_nombre())
 
 cargarGrafico(primerRuta, segundaRuta)

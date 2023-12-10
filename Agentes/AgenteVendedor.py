@@ -7,10 +7,11 @@ from Mercado import *
 
 
 class AgenteVendedor:
-    def __init__(self, nombre_vendedor, dinero_recaudado=0):
+    def __init__(self, nombre_vendedor,mercadoQueAtiende):
         self.nombre_vendedor = nombre_vendedor
-        self.dinero_recaudado = dinero_recaudado
+        self.dinero_recaudado = 0
         self.atender = False
+        self.mercadoQueAtiende = mercadoQueAtiende
 
         """ instanciamos los mercados """
         self.listaLaPampa = []
@@ -36,6 +37,9 @@ class AgenteVendedor:
         self.Torta = Productos("zapatos", 50, 30)
 
         self.listaFidelAranibar = [self.Saco, self.Corbata, self.Juguete, self.Torta]
+
+    def get_Mercado_Que_Atiende(self):
+        return self.mercadoQueAtiende
 
     def AtenderCliente(self):
         self.atender = True
