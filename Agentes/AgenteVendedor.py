@@ -38,6 +38,12 @@ class AgenteVendedor:
 
         self.listaFidelAranibar = [self.Saco, self.Corbata, self.Juguete, self.Torta]
 
+    def aumentarDineroRecaudado(self,incremento):
+        self.dinero_recaudado = self.dinero_recaudado + incremento
+
+    def obtenerDineroRecaudado(self):
+        return self.dinero_recaudado
+
     def get_Mercado_Que_Atiende(self):
         return self.mercadoQueAtiende
 

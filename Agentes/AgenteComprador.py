@@ -40,6 +40,10 @@ class AgenteComprador:
         self.dineroGastado = 0
         self.tiempoUsado = 0
 
+    def ObtenerDineroDisponible(self):
+        return self.dinero_Disponible
+        
+
     def ObtenerTiempoUsado(self):
         return self.tiempoUsado
 
@@ -63,7 +67,7 @@ class AgenteComprador:
     def DesplazamientoIda(self):
         nombreRuta1 = ""
         nombreRuta2 = ""
-        if (self.dinero_Disponible > 0) and (self.tiempoUsado < self.tiempo_De_Compra):
+        if (self.dinero_Disponible > 0) and (self.tiempoUsado < self.tiempo_De_Compra) and (self.tiempo_De_Compra>31):
             if self.mercadoObjetivo == "La Pampa":
                 if (self.Ruta1.get_pasaje() > self.Ruta4.get_pasaje()) or (
                     self.Ruta1.get_tiempo_recorrido()
@@ -233,7 +237,7 @@ class AgenteComprador:
             # Modificar el tamaño de la ventana
             detalles.geometry("400x300")
             # Mensajes
-            mensaje1 = "No tienes dinero : "
+            mensaje1 = "No tienes dinero par realizar el viaje de Ida: "
 
             # Etiquetas con los mensajes
             label1 = tk.Label(detalles, text=mensaje1)
@@ -254,12 +258,48 @@ class AgenteComprador:
     def obtener_Lista_ProductosA_Comprar(self):
         return self.listaProductos
 
-    def ComprarProducto(self, precioProducto):
-        if ((self.dinero_Disponible > 0)):
+    def ComprarProducto(self, precioProducto,productoAcomprar):
+        tiempoIngresado=self.ObtenerTiempoDeCompraIngresado()
+        tiempoUsado = self.ObtenerTiempoUsado()
+        dineroGastado = self.obteneDineroGastado()
+
+        #  and (tiempoUsado<tiempoIngresado)
+        if ((self.dinero_Disponible > 0)and (tiempoUsado<tiempoIngresado) and (dineroGastado < self.ObtenerDineroDisponible())):
             self.aumentarGasto(precioProducto)
             self.aumentarTiempo(0.5)  # aumenta el tiempo medio minuto por cada producto
             print("el dinero gastado es ", str(self.obteneDineroGastado()))
             print("el tiempo gastado es : ",str(self.tiempoUsado))
+
+            detalles = tk.Tk()
+            # Establecer la posición inicial de la ventana
+            detalles.geometry("+1100+300")
+            # Modificar el tamaño de la ventana
+            detalles.geometry("400x300")
+            # Mensajes
+            mensaje1 = "Compraste Exitosamente el producto : "+productoAcomprar
+
+            # Etiquetas con los mensajes
+            label1 = tk.Label(detalles, text=mensaje1)
+            label1.pack()
+
+            # Iniciar el bucle de eventos
+            detalles.mainloop()
+
+        else:
+            detalles = tk.Tk()
+            # Establecer la posición inicial de la ventana
+            detalles.geometry("+1100+300")
+            # Modificar el tamaño de la ventana
+            detalles.geometry("400x300")
+            # Mensajes
+            mensaje1 = "No tienes dinero para  comprar el producto : "+productoAcomprar
+
+            # Etiquetas con los mensajes
+            label1 = tk.Label(detalles, text=mensaje1)
+            label1.pack()
+
+            # Iniciar el bucle de eventos
+            detalles.mainloop()
 
     def __str__(self):
         return (

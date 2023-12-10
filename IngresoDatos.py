@@ -96,46 +96,56 @@ agentecompra = AgenteComprador(
 )
 agentecompra.agregar_Productos(listaProductos)
 primerRuta, segundaRuta = agentecompra.DesplazamientoIda()
-dineroViajeIda = agentecompra.obteneDineroGastado()
-tiempoUsado = agentecompra.ObtenerTiempoUsado()
+# dineroGastado = agentecompra.obteneDineroGastado()
+# tiempoUsado = agentecompra.ObtenerTiempoUsado()
 
 """ instanciamos los Agentes de Venta """
 agenteVendedorLaPampa = AgenteVendedor("juan", "La Pampa")
 agenteVendedorSanAntonio = AgenteVendedor("juan", "Fidel Aranibar")
 agenteVendedorFidelAranibar = AgenteVendedor("juan", "San Antonio")
 
+if "La Pampa" == agentecompra.obtenerMercadoObjetivo():
+    """realizamos la compra en La Pampa"""
+    contador = 0
+    tamañoDeLista = len(agentecompra.obtener_Lista_ProductosA_Comprar())
+    # print("el tamaño de lista es : ",str(tamañoDeLista))
+    while contador < tamañoDeLista:
+        mercadoComprador = (
+            agentecompra.obtenerMercadoObjetivo()
+        )  # mercado donde se realizara la compra
+        mercadoVendedor = agenteVendedorLaPampa.get_Mercado_Que_Atiende()
+        if mercadoComprador == mercadoVendedor:
+            productoAcomprar = agentecompra.obtener_Lista_ProductosA_Comprar()[
+                contador
+            ]  # muestra un producto de la lista
+            precioProducto = 0
 
-""" realizamos la compra """
-contador = 0
-tamañoDeLista = len(agentecompra.obtener_Lista_ProductosA_Comprar())
-# print("el tamaño de lista es : ",str(tamañoDeLista))
-while contador < tamañoDeLista:
-    mercadoComprador = agentecompra.obtenerMercadoObjetivo() #mercado donde se realizara la compra
-    mercadoVendedor = agenteVendedorLaPampa.get_Mercado_Que_Atiende()
-    if mercadoComprador == mercadoVendedor:
-        productoAcomprar = agentecompra.obtener_Lista_ProductosA_Comprar()[contador] #muestra un producto de la lista
-        precioProducto = 0
+            """ Verificar que el producto esta en la lista  del Mercado"""
+            contador1 = 0
+            while contador1 < len(agenteVendedorLaPampa.get_lista_la_pampa()):
+                if (
+                    productoAcomprar
+                    == agenteVendedorLaPampa.get_lista_la_pampa()[
+                        contador1
+                    ].get_nombre()
+                ):
+                    precioProducto = agenteVendedorLaPampa.get_lista_la_pampa()[
+                        contador1
+                    ].get_precio_unitario()  # precio
+                    """ comprar el producto """
+                    agenteVendedorLaPampa.AtenderCliente()
+                    agentecompra.ComprarProducto(precioProducto,productoAcomprar)
+                    agenteVendedorLaPampa.aumentarDineroRecaudado(precioProducto)
+                    agenteVendedorLaPampa.DejarAtenderCliente()
 
-        """ Verificar que el producto esta en la lista  del Mercado"""
-        contador1 =0
-        while(contador1 < len(agenteVendedorLaPampa.get_lista_la_pampa())):
-            if(productoAcomprar == agenteVendedorLaPampa.get_lista_la_pampa()[contador1].get_nombre()):
-                precioProducto = agenteVendedorLaPampa.get_lista_la_pampa()[contador1].get_precio_unitario() #precio 
-                """ comprar el producto """
-                agentecompra.ComprarProducto(precioProducto)
+                contador1 = contador1 + 1
 
-            contador1 = contador1 +1
-        
-        print("el precio del producto es ",precioProducto)
-        print("la producto a comprar es : ",productoAcomprar)
-    contador = contador + 1
+            print("el precio del producto es ", precioProducto)
+            print("la producto a comprar es : ", productoAcomprar)
+        contador = contador + 1
 
-
-# print(agente1.get_lista_la_pampa()[0].get_nombre())
-
-# print(Mercado_Objetivo,dinero_Disponible,tiempo_De_Compra)
-# print(agentecompra.obtener_Lista_Productos())
-
+dineroGastado = agentecompra.obteneDineroGastado()
+tiempoUsado = agentecompra.ObtenerTiempoUsado()
 
 # Crear la ventana principal de los detalles de compra que se va hacer
 detalles = tk.Tk()
@@ -148,8 +158,8 @@ mensaje1 = "el dinero disponible es : " + str(dinero_Disponible) + " Bs"
 mensaje2 = f"Los productos que se quiere comprar son : {listaProductos}"
 mensaje3 = "el tiempo disponible en minutos  es : " + str(tiempo_De_Compra)
 mensaje4 = "El mercado objetivo es : " + str(Mercado_Objetivo)
-mensaje5 = "El dinero gastado en la ida es " + str(dineroViajeIda) + " Bs"
-mensaje7 = "El tiempo de ida usado es : " + str(tiempoUsado) + " minutos"
+mensaje5 = "El dinero gastado es " + str(dineroGastado) + " Bs"
+mensaje7 = "El tiempo usado es  : " + str(tiempoUsado) + " minutos"
 
 # Etiquetas con los mensajes
 label1 = tk.Label(detalles, text=mensaje1)
@@ -164,8 +174,12 @@ label3.pack()
 label4 = tk.Label(detalles, text=mensaje4)
 label4.pack()
 
+
 label6 = tk.Label(detalles, text="")
 label6.pack()
+
+label5 = tk.Label(detalles, text=mensaje5)
+label5.pack()
 
 label7 = tk.Label(detalles, text=mensaje7)
 label7.pack()
