@@ -1,15 +1,15 @@
 import cv2
+
 # from Agentes.AgenteComprador import *
 
 
-# def cargarGrafico(numero):
-def cargarGrafico(primerRuta,SegundaRuta):
+def cargarGrafico(primerRuta, SegundaRuta):
     img = cv2.imread("MapaCocha7.png")
 
     # print("la primerRuta es : ",primerRuta,"la segundaRuta es : ",SegundaRuta)
 
     try:
-        GraficarRutas(img,primerRuta,SegundaRuta)
+        GraficarRutas(img, primerRuta, SegundaRuta)
     except Exception:
         print("problemas al graficar")
 
@@ -18,11 +18,29 @@ def cargarGrafico(primerRuta,SegundaRuta):
     cv2.destroyAllWindows()
 
 
-def GraficarRutas(img,primerRuta,SegundaRuta):
-    if(primerRuta == "ruta4" and SegundaRuta == "ruta5LaPampa"):
+def GraficarRutas(img, primerRuta, SegundaRuta):
+    """Ir al mercado la pampa"""
+    if primerRuta == "ruta4" and SegundaRuta == "ruta5LaPampa":
         GraficarRuta4(img)
         GraficarRuta5LaPampa(img)
 
+    if primerRuta == "graficarRuta1" and SegundaRuta == "ruta2LaPampa":
+        GraficarRuta1(img)
+        GraficarRuta2LaPampa(img)
+
+    """ Ir al mercado San Antonio """
+    if primerRuta == "ruta4" and SegundaRuta == "ruta5SanAntonio":
+        GraficarRuta4(img)
+        GraficarRuta5SanAntonio(img)
+
+    if primerRuta == "graficarRuta1" and SegundaRuta == "ruta3SanAntonio":
+        GraficarRuta1(img)
+        GraficarRuta3SanAntonio(img)
+
+    """ Ir al Mercado Fidel Aranibar """
+    if primerRuta == "ruta4" and SegundaRuta == "ruta4FidelAranibar":
+        GraficarRuta4(img)
+        GraficarRuta4FidelAranibar(img)
 
     # GraficarRuta1(img)
     # GraficarRuta2LaPampa(img)
