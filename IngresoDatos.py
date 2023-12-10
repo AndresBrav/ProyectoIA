@@ -4,6 +4,7 @@ sys.path.append("c:/Users/ASUS/Desktop/PoyectoIA/Agentes")
 from Agentes.AgenteComprador import *
 from Agentes.AgenteChofer import *
 from GraficarCamino import cargarGrafico
+from Agentes.AgenteVendedor import *
 from Rutas import *
 from Productos import *
 from Mercado import *
@@ -35,7 +36,9 @@ def ingresar_datos():
         listaProductos = []
 
         # Solicitar al usuario que ingrese la cantidad de productos
-        while True:
+        contador = 0
+        # while True:
+        while contador < 4 :
             producto = simpledialog.askstring(
                 "Ingreso de datos",
                 "Por favor, ingresa el producto (o introduce la palabra (stop) para terminar):",
@@ -46,6 +49,7 @@ def ingresar_datos():
                 break
             # Agregar el producto a   la lista
             listaProductos.append(str(producto))
+            contador = contador +1
 
         global tiempo_De_Compra
         tiempo_De_Compra = simpledialog.askfloat(
@@ -56,7 +60,7 @@ def ingresar_datos():
         global Mercado_Objetivo
         Mercado_Objetivo = simpledialog.askstring(
             "Ingreso de datos",
-            "Por favor, ingresa el Mercado donde vas a realizar la compra",
+            "Por favor, ingresa el Mercado donde vas a realizar la compra (Fidel Aranibar,La Pampa,San Antonio)",
         )
 
     except (ValueError, TypeError):
@@ -102,6 +106,8 @@ tiempoUsado = agentecompra.ObtenerTiempoUsado()
 # print(agentecompra.obtener_Lista_Productos())
 
 
+
+
 # Crear la ventana principal de los detalles de compra que se va hacer
 detalles = tk.Tk()
 # Establecer la posición inicial de la ventana
@@ -139,36 +145,10 @@ label7.pack()
 detalles.mainloop()
 
 
-""" instanciamos los mercados """
-listaLaPampa = []
-Arroz = Producto("arroz", 23, 280)
-Huevo = Producto("huevo", 23, 60)
-Papa = Producto("papa", 23, 28)
-Carne = Producto("carne", 23, 35)
 
-listaLaPampa = [Arroz, Huevo, Papa, Carne]
-
-
-listaSanAntonio = []
-Cuaderno = Producto("cuaderno", 100, 12)
-Guitarra = Producto("guitarra", 20, 420)
-Hilos = Producto("hilos", 100, 2)
-Zapatos = Producto("zapatos", 50, 150)
-
-listaSanAntonio = [Cuaderno, Guitarra, Hilos, Zapatos]
-
-listaFidelAranibar = []
-Saco = Producto("saco", 100, 350)
-Corbata = Producto("guitarra", 20, 25)
-Juguete = Producto("hilos", 100, 90)
-Torta = Producto("zapatos", 50, 30)
-
-listaFidelAranibar = [Saco, Corbata, Juguete, Torta]
-
-
-mercado_La_Pampa = Mercado("La Pampa", listaLaPampa)
-mercado_San_Antonio = Mercado("San Antonio", listaSanAntonio)
-mercado_Fidel_Aranibar = Mercado("Fidel Aranibar", listaFidelAranibar)
+# mercado_La_Pampa = Mercado("La Pampa", listaLaPampa)
+# mercado_San_Antonio = Mercado("San Antonio", listaSanAntonio)
+# mercado_Fidel_Aranibar = Mercado("Fidel Aranibar", listaFidelAranibar)
 
 # nuevalistapampa = mercado_La_Pampa.obtener_Lista_Productos()
 # print(nuevalistapampa[1].get_nombre())
@@ -176,5 +156,7 @@ mercado_Fidel_Aranibar = Mercado("Fidel Aranibar", listaFidelAranibar)
 # nuevalistaSanAntonio = mercado_San_Antonio.obtener_Lista_Productos()
 # print(nuevalistaSanAntonio[1].get_nombre())
 
+agente1 = AgenteVendedor("juan", 15)
+print(agente1.get_lista_la_pampa()[0].get_nombre())
 
 cargarGrafico(primerRuta, segundaRuta)
