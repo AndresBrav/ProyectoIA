@@ -228,9 +228,10 @@ if "Fidel Aranibar" == agentecompra.obtenerMercadoObjetivo():
 
             print("el precio del producto es ", precioProducto)
             print("la producto a comprar es : ", productoAcomprar)
+            print("\n")
         contador = contador + 1
 
-# primerRutaVuelta, segundaRutaVuelta = agentecompra.DesplazamientoVuelta()
+primerRutaVuelta, segundaRutaVuelta = agentecompra.DesplazamientoVuelta()
 
 dineroGastado = agentecompra.obteneDineroGastado()
 tiempoUsado = agentecompra.ObtenerTiempoUsado()
@@ -278,4 +279,4 @@ detalles.mainloop()
 
 cargarGrafico(primerRuta,segundaRuta)
 
-# cargarGraficoVuelta(primerRutaVuelta, segundaRutaVuelta)
+cargarGraficoVuelta(primerRutaVuelta, segundaRutaVuelta)

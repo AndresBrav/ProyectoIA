@@ -261,7 +261,7 @@ class AgenteComprador:
         if (
             (self.dinero_Disponible > 0)
             and (self.tiempoUsado < self.tiempo_De_Compra)
-            and (self.tiempo_De_Compra > 31)
+            # and (self.tiempo_De_Compra > 31)
         ):
             if (self.mercadoObjetivo == "La Pampa") and (
                 self.ObtenerCasaObjetivo() == "Casa"
@@ -288,7 +288,7 @@ class AgenteComprador:
                     self.conductorRuta2LaPampa.CobrarDinero(
                         self.Ruta2LaPampa.get_pasaje()
                     )
-                    # print("el dinero pagado al conductor es : "+str(self.conductorRuta4.get_cobrar()))
+                    
 
                 else:
                     """avanzar conductor"""
@@ -305,7 +305,7 @@ class AgenteComprador:
                     self.conductorRuta5LaPampa.CobrarDinero(
                         self.Ruta5LaPampa.get_pasaje()
                     )
-                ################################################################################
+                
                 if nombreRuta1 == "ruta2LaPampa":
                     nombreRuta2 = str(self.Ruta1.get_nombre())
                     """avanzar conductor"""
@@ -323,7 +323,7 @@ class AgenteComprador:
                 else:
                     nombreRuta2 = str(self.Ruta4.get_nombre())
                     """avanzar conductor"""
-                    self.conductorRuta4.Avanzar()  ###################################################
+                    self.conductorRuta4.Avanzar()
                     self.dinero_Disponible = (
                         self.dinero_Disponible - self.Ruta4.get_pasaje()
                     )
@@ -334,7 +334,7 @@ class AgenteComprador:
 
                     """ pagar al condutor """
                     self.conductorRuta4.CobrarDinero(self.Ruta4.get_pasaje())
-                    ################################################
+                    
             """ mercado  objetivo San Antonio  y casa """
             if (self.mercadoObjetivo == "San Antonio") and (
                 self.ObtenerCasaObjetivo() == "Casa"
@@ -475,6 +475,7 @@ class AgenteComprador:
             (dinero_Disponible > 0)
             and (tiempoUsado < tiempoIngresado)
             and (dineroGastado < dinero_Disponible)
+            and (precioProducto < dinero_Disponible)
         ):
             self.aumentarGasto(precioProducto)
             self.aumentarTiempo(0.5)  # aumenta el tiempo medio minuto por cada producto

@@ -1,12 +1,45 @@
 import cv2
-
+import numpy as np
 # from Agentes.AgenteComprador import *
 
 
 def cargarGrafico(primerRuta, SegundaRuta):
     img = cv2.imread("MapaCocha7.png")
 
-    # print("la primerRuta es : ",primerRuta,"la segundaRuta es : ",SegundaRuta)
+    # Verificar si la carga de la imagen fue exitosa
+    if img is None:
+        print(f"No se pudo cargar la imagen desde la ruta: {ruta_imagen}")
+        return
+
+    # Especificar el punto de transbordo
+    centro = (780, 360)
+    radio = 30
+    color_amarillo = (0, 255, 255)  # Color amarillo en formato BGR
+    #otro punto de transbordo
+    centro1 =(320,360)
+    radio1 = 30
+    # punto de casa
+    centroCasa =(780,240)
+    radioCasa = 30
+    colorCasa = (0, 0, 255) #color rojo
+    #mercadoLa Pampa
+    centroPampa = (1080,630)
+    color_verde = (0, 255, 0)
+    #mercado San Antonio
+    centroSanAntonio = (600,630)
+    color_verde = (0, 255, 0)
+    #mercado Fidel Aranibar
+    centroFidelAraniar = (780,650)
+    color_verde = (0, 255, 0)
+
+
+    # Dibujar el círculo lleno en la imagen
+    cv2.circle(img, centro, radio, color_amarillo, thickness=-1)
+    cv2.circle(img, centro1, radio1, color_amarillo, thickness=-1)
+    cv2.circle(img, centroCasa, radioCasa, colorCasa, thickness=-1)
+    cv2.circle(img, centroPampa, radioCasa, color_verde, thickness=-1)
+    cv2.circle(img, centroSanAntonio, radioCasa, color_verde, thickness=-1)
+    cv2.circle(img, centroFidelAraniar, radioCasa, color_verde, thickness=-1)
 
     try:
         GraficarRutas(img, primerRuta, SegundaRuta)
@@ -1202,6 +1235,6 @@ def pintarverticalNegro(img, iniX, largo, iniY, ancho):
         print("error")
 
 
-# cargarGrafico()
+# cargarGrafico("ruta4","ruta4FidelAranibar")
 
 # pip install opencv-python tienes que instalar
