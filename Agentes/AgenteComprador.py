@@ -42,6 +42,12 @@ class AgenteComprador:
         self.tiempoUsado = 0
         self.viajeIda = False
 
+    def ObtenerEstadoViajeIda(self):
+        return self.viajeIda
+
+    def cambiarEstadoViajeIda(self):
+        self.viajeIda = True
+
     def ObtenerCasaObjetivo(self):
         return self.casaObjetivo
 
@@ -75,31 +81,8 @@ class AgenteComprador:
             (self.dinero_Disponible > 0)
             and (self.tiempoUsado < self.tiempo_De_Compra)
             and (self.tiempo_De_Compra > 31)
-            and (
-                self.Ruta1.get_tiempo_recorrido()
-                + self.Ruta2LaPampa.get_tiempo_recorrido()
-                < self.tiempo_De_Compra
-            )
-            and (
-                self.Ruta5LaPampa.get_tiempo_recorrido()
-                + self.Ruta4.get_tiempo_recorrido()
-                < self.tiempo_De_Compra
-            )
-            and (
-                self.Ruta4.get_tiempo_recorrido()
-                + self.Ruta5SanAntonio.get_tiempo_recorrido()
-                < self.tiempo_De_Compra
-            )
-            and (
-                self.Ruta4FidelAranibar.get_tiempo_recorrido()
-                + self.Ruta4.get_tiempo_recorrido()
-                < self.tiempo_De_Compra
-            )
-            and (
-                self.Ruta3SanAntonio.get_tiempo_recorrido()
-                + self.Ruta1.get_tiempo_recorrido()
-                < self.tiempo_De_Compra
-            )
+            and (self.Ruta1.get_tiempo_recorrido() < self.tiempo_De_Compra)
+            and (self.Ruta4.get_tiempo_recorrido() < self.tiempo_De_Compra)
         ):
             if self.mercadoObjetivo == "La Pampa":
                 if (self.Ruta1.get_pasaje() > self.Ruta4.get_pasaje()) or (
@@ -263,7 +246,8 @@ class AgenteComprador:
                 self.conductorRuta4FidelAranibar.CobrarDinero(
                     self.Ruta4FidelAranibar.get_pasaje()
                 )
-                self.viajeIda = True
+            self.cambiarEstadoViajeIda()
+                # print()
         else:
             detalles = tk.Tk()
             # Establecer la posición inicial de la ventana
@@ -285,10 +269,11 @@ class AgenteComprador:
     def DesplazamientoVuelta(self):
         nombreRuta1 = ""
         nombreRuta2 = ""
+        estadoIda = self.ObtenerEstadoViajeIda()
         if (
             (self.dinero_Disponible > 0)
             and (self.tiempoUsado < self.tiempo_De_Compra)
-            and (self.viajeIda == True)
+            and (estadoIda == True)
         ):
             if (self.mercadoObjetivo == "La Pampa") and (
                 self.ObtenerCasaObjetivo() == "Casa"
@@ -502,7 +487,7 @@ class AgenteComprador:
             and (tiempoUsado < tiempoIngresado)
             and (dineroGastado < dinero_Disponible)
             and (precioProducto < dinero_Disponible)
-            and (self.viajeIda == True)
+            and (self.ObtenerEstadoViajeIda() == True)
         ):
             self.aumentarGasto(precioProducto)
             self.aumentarTiempo(0.5)  # aumenta el tiempo medio minuto por cada producto
@@ -516,10 +501,14 @@ class AgenteComprador:
             detalles.geometry("400x300")
             # Mensajes
             mensaje1 = "Compraste Exitosamente el producto : " + productoAcomprar
+            mensaje2=  "El precio del producto es "+str(precioProducto)
 
             # Etiquetas con los mensajes
             label1 = tk.Label(detalles, text=mensaje1)
             label1.pack()
+
+            label2 = tk.Label(detalles, text=mensaje2)
+            label2.pack()
 
             # Iniciar el bucle de eventos
             detalles.mainloop()
