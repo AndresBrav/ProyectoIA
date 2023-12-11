@@ -40,6 +40,7 @@ class AgenteComprador:
         self.casaObjetivo = "Casa"
         self.dineroGastado = 0
         self.tiempoUsado = 0
+        self.viajeIda = False
 
     def ObtenerCasaObjetivo(self):
         return self.casaObjetivo
@@ -74,6 +75,31 @@ class AgenteComprador:
             (self.dinero_Disponible > 0)
             and (self.tiempoUsado < self.tiempo_De_Compra)
             and (self.tiempo_De_Compra > 31)
+            and (
+                self.Ruta1.get_tiempo_recorrido()
+                + self.Ruta2LaPampa.get_tiempo_recorrido()
+                < self.tiempo_De_Compra
+            )
+            and (
+                self.Ruta5LaPampa.get_tiempo_recorrido()
+                + self.Ruta4.get_tiempo_recorrido()
+                < self.tiempo_De_Compra
+            )
+            and (
+                self.Ruta4.get_tiempo_recorrido()
+                + self.Ruta5SanAntonio.get_tiempo_recorrido()
+                < self.tiempo_De_Compra
+            )
+            and (
+                self.Ruta4FidelAranibar.get_tiempo_recorrido()
+                + self.Ruta4.get_tiempo_recorrido()
+                < self.tiempo_De_Compra
+            )
+            and (
+                self.Ruta3SanAntonio.get_tiempo_recorrido()
+                + self.Ruta1.get_tiempo_recorrido()
+                < self.tiempo_De_Compra
+            )
         ):
             if self.mercadoObjetivo == "La Pampa":
                 if (self.Ruta1.get_pasaje() > self.Ruta4.get_pasaje()) or (
@@ -237,6 +263,7 @@ class AgenteComprador:
                 self.conductorRuta4FidelAranibar.CobrarDinero(
                     self.Ruta4FidelAranibar.get_pasaje()
                 )
+                self.viajeIda = True
         else:
             detalles = tk.Tk()
             # Establecer la posición inicial de la ventana
@@ -244,7 +271,7 @@ class AgenteComprador:
             # Modificar el tamaño de la ventana
             detalles.geometry("400x300")
             # Mensajes
-            mensaje1 = "No tienes dinero par realizar el viaje de Ida: "
+            mensaje1 = "No tienes dinero o tiempo  par realizar el viaje de Ida: "
 
             # Etiquetas con los mensajes
             label1 = tk.Label(detalles, text=mensaje1)
@@ -261,7 +288,7 @@ class AgenteComprador:
         if (
             (self.dinero_Disponible > 0)
             and (self.tiempoUsado < self.tiempo_De_Compra)
-            # and (self.tiempo_De_Compra > 31)
+            and (self.viajeIda == True)
         ):
             if (self.mercadoObjetivo == "La Pampa") and (
                 self.ObtenerCasaObjetivo() == "Casa"
@@ -288,7 +315,6 @@ class AgenteComprador:
                     self.conductorRuta2LaPampa.CobrarDinero(
                         self.Ruta2LaPampa.get_pasaje()
                     )
-                    
 
                 else:
                     """avanzar conductor"""
@@ -305,7 +331,7 @@ class AgenteComprador:
                     self.conductorRuta5LaPampa.CobrarDinero(
                         self.Ruta5LaPampa.get_pasaje()
                     )
-                
+
                 if nombreRuta1 == "ruta2LaPampa":
                     nombreRuta2 = str(self.Ruta1.get_nombre())
                     """avanzar conductor"""
@@ -334,7 +360,7 @@ class AgenteComprador:
 
                     """ pagar al condutor """
                     self.conductorRuta4.CobrarDinero(self.Ruta4.get_pasaje())
-                    
+
             """ mercado  objetivo San Antonio  y casa """
             if (self.mercadoObjetivo == "San Antonio") and (
                 self.ObtenerCasaObjetivo() == "Casa"
@@ -444,7 +470,7 @@ class AgenteComprador:
             # Modificar el tamaño de la ventana
             detalles.geometry("400x300")
             # Mensajes
-            mensaje1 = "No tienes dinero par realizar el viaje de Vuelta: "
+            mensaje1 = "No tienes dinero o tiempo par realizar el viaje de Vuelta: "
 
             # Etiquetas con los mensajes
             label1 = tk.Label(detalles, text=mensaje1)
@@ -476,6 +502,7 @@ class AgenteComprador:
             and (tiempoUsado < tiempoIngresado)
             and (dineroGastado < dinero_Disponible)
             and (precioProducto < dinero_Disponible)
+            and (self.viajeIda == True)
         ):
             self.aumentarGasto(precioProducto)
             self.aumentarTiempo(0.5)  # aumenta el tiempo medio minuto por cada producto
@@ -505,7 +532,7 @@ class AgenteComprador:
             detalles.geometry("400x300")
             # Mensajes
             mensaje1 = (
-                "No tienes dinero para  comprar el producto : " + productoAcomprar
+                "No tienes dinero o tiempo para  comprar el producto : " + productoAcomprar
             )
 
             # Etiquetas con los mensajes

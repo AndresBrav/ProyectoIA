@@ -3,7 +3,7 @@ import sys
 sys.path.append("c:/Users/ASUS/Desktop/PoyectoIA")  # Ajusta la ruta según tu entorno
 from Rutas import *
 from Productos import *
-from Mercado import *
+
 
 
 class AgenteVendedor:

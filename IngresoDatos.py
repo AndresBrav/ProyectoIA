@@ -8,7 +8,7 @@ from GraficarCaminoVuelta import cargarGraficoVuelta
 from Agentes.AgenteVendedor import *
 from Rutas import *
 from Productos import *
-from Mercado import *
+
 
 # from Agentes.AgenteComprador import *
 import tkinter as tk
