@@ -37,7 +37,7 @@ class AgenteComprador:
         self.tiempo_De_Compra = tiempo_De_Compra
         self.listaProductos = []
 
-        self.casaObjetivo ="Casa"
+        self.casaObjetivo = "Casa"
         self.dineroGastado = 0
         self.tiempoUsado = 0
 
@@ -46,7 +46,7 @@ class AgenteComprador:
 
     def ObtenerDineroDisponible(self):
         return self.dinero_Disponible
-        
+
     def ObtenerTiempoUsado(self):
         return self.tiempoUsado
 
@@ -63,14 +63,18 @@ class AgenteComprador:
 
     def obtenerMercadoObjetivo(self):
         return self.mercadoObjetivo
-    
+
     def ObtenerTiempoDeCompraIngresado(self):
         return self.tiempo_De_Compra
 
     def DesplazamientoIda(self):
         nombreRuta1 = ""
         nombreRuta2 = ""
-        if (self.dinero_Disponible > 0) and (self.tiempoUsado < self.tiempo_De_Compra) and (self.tiempo_De_Compra>31):
+        if (
+            (self.dinero_Disponible > 0)
+            and (self.tiempoUsado < self.tiempo_De_Compra)
+            and (self.tiempo_De_Compra > 31)
+        ):
             if self.mercadoObjetivo == "La Pampa":
                 if (self.Ruta1.get_pasaje() > self.Ruta4.get_pasaje()) or (
                     self.Ruta1.get_tiempo_recorrido()
@@ -251,13 +255,20 @@ class AgenteComprador:
 
         return nombreRuta1, nombreRuta2
 
-
     def DesplazamientoVuelta(self):
         nombreRuta1 = ""
         nombreRuta2 = ""
-        if (self.dinero_Disponible > 0) and (self.tiempoUsado < self.tiempo_De_Compra) and (self.tiempo_De_Compra>31):
-            if ((self.mercadoObjetivo == "La Pampa") and (self.ObtenerCasaObjetivo()=="Casa")):  #La Pampa
-                if (self.Ruta5LaPampa.get_pasaje() > self.Ruta2LaPampa.get_pasaje()) or (
+        if (
+            (self.dinero_Disponible > 0)
+            and (self.tiempoUsado < self.tiempo_De_Compra)
+            and (self.tiempo_De_Compra > 31)
+        ):
+            if (self.mercadoObjetivo == "La Pampa") and (
+                self.ObtenerCasaObjetivo() == "Casa"
+            ):  # La Pampa
+                if (
+                    self.Ruta5LaPampa.get_pasaje() > self.Ruta2LaPampa.get_pasaje()
+                ) or (
                     self.Ruta5LaPampa.get_tiempo_recorrido()
                     > self.Ruta2LaPampa.get_tiempo_recorrido()
                 ):
@@ -274,7 +285,9 @@ class AgenteComprador:
                     self.conductorRuta2LaPampa.Detenerse()
 
                     """ pagar al condutor """
-                    self.conductorRuta2LaPampa.CobrarDinero(self.Ruta2LaPampa.get_pasaje())
+                    self.conductorRuta2LaPampa.CobrarDinero(
+                        self.Ruta2LaPampa.get_pasaje()
+                    )
                     # print("el dinero pagado al conductor es : "+str(self.conductorRuta4.get_cobrar()))
 
                 else:
@@ -289,7 +302,9 @@ class AgenteComprador:
                     """ detener avance """
                     self.conductorRuta5LaPampa.Detenerse()
                     """ pagar al condutor """
-                    self.conductorRuta5LaPampa.CobrarDinero(self.Ruta5LaPampa.get_pasaje())
+                    self.conductorRuta5LaPampa.CobrarDinero(
+                        self.Ruta5LaPampa.get_pasaje()
+                    )
                 ################################################################################
                 if nombreRuta1 == "ruta2LaPampa":
                     nombreRuta2 = str(self.Ruta1.get_nombre())
@@ -303,14 +318,12 @@ class AgenteComprador:
                     """ detener avance """
                     self.condutorRuta1.Detenerse()
                     """ pagar al condutor """
-                    self.condutorRuta1.CobrarDinero(
-                        self.Ruta2LaPampa.get_pasaje()
-                    )
+                    self.condutorRuta1.CobrarDinero(self.Ruta2LaPampa.get_pasaje())
 
                 else:
                     nombreRuta2 = str(self.Ruta4.get_nombre())
                     """avanzar conductor"""
-                    self.conductorRuta4.Avanzar() ###################################################
+                    self.conductorRuta4.Avanzar()  ###################################################
                     self.dinero_Disponible = (
                         self.dinero_Disponible - self.Ruta4.get_pasaje()
                     )
@@ -320,13 +333,16 @@ class AgenteComprador:
                     self.conductorRuta4.Detenerse()
 
                     """ pagar al condutor """
-                    self.conductorRuta4.CobrarDinero(
-                        self.Ruta4.get_pasaje()
-                    )
+                    self.conductorRuta4.CobrarDinero(self.Ruta4.get_pasaje())
                     ################################################
             """ mercado  objetivo San Antonio  y casa """
-            if ((self.mercadoObjetivo == "San Antonio") and (self.ObtenerCasaObjetivo()=="Casa")):
-                if (self.Ruta3SanAntonio.get_pasaje() > self.Ruta5SanAntonio.get_pasaje()) or (
+            if (self.mercadoObjetivo == "San Antonio") and (
+                self.ObtenerCasaObjetivo() == "Casa"
+            ):
+                if (
+                    self.Ruta3SanAntonio.get_pasaje()
+                    > self.Ruta5SanAntonio.get_pasaje()
+                ) or (
                     self.Ruta3SanAntonio.get_tiempo_recorrido()
                     > self.Ruta5SanAntonio.get_tiempo_recorrido()
                 ):
@@ -342,7 +358,9 @@ class AgenteComprador:
                     self.conductorRuta5SanAntonio.Detenerse()
 
                     """ pagar al condutor """
-                    self.conductorRuta5SanAntonio.CobrarDinero(self.Ruta5SanAntonio.get_pasaje())
+                    self.conductorRuta5SanAntonio.CobrarDinero(
+                        self.Ruta5SanAntonio.get_pasaje()
+                    )
                 else:
                     nombreRuta1 = str(self.Ruta3SanAntonio.get_nombre())
                     """avanzar conductor"""
@@ -356,9 +374,10 @@ class AgenteComprador:
                     self.conductorRuta3SanAntonio.Detenerse()
 
                     """ pagar al condutor """
-                    self.conductorRuta3SanAntonio.CobrarDinero(self.Ruta3SanAntonio.get_pasaje())
+                    self.conductorRuta3SanAntonio.CobrarDinero(
+                        self.Ruta3SanAntonio.get_pasaje()
+                    )
 
-                    
                 if nombreRuta1 == "ruta5SanAntonio":
                     nombreRuta2 = str(self.Ruta4.get_nombre())
                     """avanzar conductor"""
@@ -373,9 +392,7 @@ class AgenteComprador:
                     self.conductorRuta4.Detenerse()
 
                     """ pagar al condutor """
-                    self.conductorRuta4.CobrarDinero(
-                        self.Ruta4.get_pasaje()
-                    )
+                    self.conductorRuta4.CobrarDinero(self.Ruta4.get_pasaje())
                 else:
                     nombreRuta2 = str(self.Ruta1.get_nombre())
                     """avanzar conductor"""
@@ -389,11 +406,11 @@ class AgenteComprador:
                     self.condutorRuta1.Detenerse()
 
                     """ pagar al condutor """
-                    self.condutorRuta1.CobrarDinero(
-                        self.Ruta1.get_pasaje()
-                    )
+                    self.condutorRuta1.CobrarDinero(self.Ruta1.get_pasaje())
 
-            if ((self.mercadoObjetivo == "Fidel Aranibar") and (self.ObtenerCasaObjetivo()=="Casa")):
+            if (self.mercadoObjetivo == "Fidel Aranibar") and (
+                self.ObtenerCasaObjetivo() == "Casa"
+            ):
                 nombreRuta1 = str(self.Ruta4FidelAranibar.get_nombre())
                 nombreRuta2 = str(self.Ruta4.get_nombre())
 
@@ -416,10 +433,10 @@ class AgenteComprador:
                 self.conductorRuta4.Detenerse()
 
                 """ pagar al condutor """
-                self.conductorRuta4FidelAranibar.CobrarDinero(self.Ruta4FidelAranibar.get_pasaje())
-                self.conductorRuta4.CobrarDinero(
-                    self.Ruta4.get_pasaje()
+                self.conductorRuta4FidelAranibar.CobrarDinero(
+                    self.Ruta4FidelAranibar.get_pasaje()
                 )
+                self.conductorRuta4.CobrarDinero(self.Ruta4.get_pasaje())
         else:
             detalles = tk.Tk()
             # Establecer la posición inicial de la ventana
@@ -438,9 +455,6 @@ class AgenteComprador:
 
         return nombreRuta1, nombreRuta2
 
-
-
-
     """ agregar una lista de productos a la lista """
 
     def agregar_Productos(self, Lista_de_producto_A_Comprar):
@@ -451,17 +465,21 @@ class AgenteComprador:
     def obtener_Lista_ProductosA_Comprar(self):
         return self.listaProductos
 
-    def ComprarProducto(self, precioProducto,productoAcomprar):
-        tiempoIngresado=self.ObtenerTiempoDeCompraIngresado()
+    def ComprarProducto(self, precioProducto, productoAcomprar):
+        tiempoIngresado = self.ObtenerTiempoDeCompraIngresado()
         tiempoUsado = self.ObtenerTiempoUsado()
         dineroGastado = self.obteneDineroGastado()
+        dinero_Disponible = self.ObtenerDineroDisponible()
 
-        #  and (tiempoUsado<tiempoIngresado)
-        if ((self.dinero_Disponible > 0)and (tiempoUsado<tiempoIngresado) and (dineroGastado < self.ObtenerDineroDisponible())):
+        if (
+            (dinero_Disponible > 0)
+            and (tiempoUsado < tiempoIngresado)
+            and (dineroGastado < dinero_Disponible)
+        ):
             self.aumentarGasto(precioProducto)
             self.aumentarTiempo(0.5)  # aumenta el tiempo medio minuto por cada producto
-            print("el dinero gastado es ", str(self.obteneDineroGastado())," Bs")
-            print("el tiempo gastado es : ",str(self.tiempoUsado)," Bs")
+            print("el dinero gastado es ", str(self.obteneDineroGastado()), " Bs")
+            print("el tiempo gastado es : ", str(self.tiempoUsado), " Bs")
 
             detalles = tk.Tk()
             # Establecer la posición inicial de la ventana
@@ -469,7 +487,7 @@ class AgenteComprador:
             # Modificar el tamaño de la ventana
             detalles.geometry("400x300")
             # Mensajes
-            mensaje1 = "Compraste Exitosamente el producto : "+productoAcomprar
+            mensaje1 = "Compraste Exitosamente el producto : " + productoAcomprar
 
             # Etiquetas con los mensajes
             label1 = tk.Label(detalles, text=mensaje1)
@@ -485,7 +503,9 @@ class AgenteComprador:
             # Modificar el tamaño de la ventana
             detalles.geometry("400x300")
             # Mensajes
-            mensaje1 = "No tienes dinero para  comprar el producto : "+productoAcomprar
+            mensaje1 = (
+                "No tienes dinero para  comprar el producto : " + productoAcomprar
+            )
 
             # Etiquetas con los mensajes
             label1 = tk.Label(detalles, text=mensaje1)

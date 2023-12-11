@@ -104,6 +104,7 @@ agenteVendedorLaPampa = AgenteVendedor("Juan", "La Pampa")
 agenteVendedorSanAntonio = AgenteVendedor("Paolo", "San Antonio")
 agenteVendedorFidelAranibar = AgenteVendedor("Kevin", "Fidel Aranibar")
 
+
 if "La Pampa" == agentecompra.obtenerMercadoObjetivo():
     """realizamos la compra en La Pampa"""
     contador = 0
@@ -181,7 +182,8 @@ if "San Antonio" == agentecompra.obtenerMercadoObjetivo():
                 contador1 = contador1 + 1
 
             print("el precio del producto es ", precioProducto)
-            print("la producto a comprar es : ", productoAcomprar)
+            print("el producto a comprar es : ", productoAcomprar)
+            print("\n")
         contador = contador + 1
 
 if "Fidel Aranibar" == agentecompra.obtenerMercadoObjetivo():
@@ -228,7 +230,7 @@ if "Fidel Aranibar" == agentecompra.obtenerMercadoObjetivo():
             print("la producto a comprar es : ", productoAcomprar)
         contador = contador + 1
 
-primerRutaVuelta, segundaRutaVuelta = agentecompra.DesplazamientoVuelta()
+# primerRutaVuelta, segundaRutaVuelta = agentecompra.DesplazamientoVuelta()
 
 dineroGastado = agentecompra.obteneDineroGastado()
 tiempoUsado = agentecompra.ObtenerTiempoUsado()
@@ -276,4 +278,4 @@ detalles.mainloop()
 
 cargarGrafico(primerRuta,segundaRuta)
 
-cargarGraficoVuelta(primerRutaVuelta, segundaRutaVuelta)
+# cargarGraficoVuelta(primerRutaVuelta, segundaRutaVuelta)
