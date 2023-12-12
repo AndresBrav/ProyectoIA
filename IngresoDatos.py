@@ -46,11 +46,12 @@ def ingresar_datos():
             )
 
             # Si el producto  es stop, salir del bucle
-            if producto == "stop":
+            if producto == "stop" and contador > 1 and contador < 4:
                 break
-            # Agregar el producto a   la lista
-            listaProductos.append(str(producto))
-            contador = contador + 1
+            if producto != "stop":
+                # Agregar el producto a   la lista
+                listaProductos.append(str(producto))
+                contador = contador + 1
 
         global tiempo_De_Compra
         tiempo_De_Compra = simpledialog.askfloat(
@@ -249,7 +250,9 @@ mensaje3 = "el tiempo disponible en minutos  es : " + str(tiempo_De_Compra)
 mensaje4 = "El mercado objetivo es : " + str(Mercado_Objetivo)
 
 mensaje5 = "El dinero gastado es " + str(agentecompra.obteneDineroGastado()) + " Bs"
-mensaje7 = "El tiempo usado es  : " + str(agentecompra.ObtenerTiempoUsado()) + " minutos"
+mensaje7 = (
+    "El tiempo usado es  : " + str(agentecompra.ObtenerTiempoUsado()) + " minutos"
+)
 
 # Etiquetas con los mensajes
 label1 = tk.Label(detalles, text=mensaje1)
@@ -277,6 +280,6 @@ label7.pack()
 # Iniciar el bucle de eventos
 detalles.mainloop()
 
-cargarGrafico(primerRuta,segundaRuta)#grafico de ida (ruta1,ruta5LaPampa)
+cargarGrafico(primerRuta, segundaRuta)  # grafico de ida (ruta1,ruta5LaPampa)
 
-cargarGraficoVuelta(primerRutaVuelta, segundaRutaVuelta) #grafico de vuelta
+cargarGraficoVuelta(primerRutaVuelta, segundaRutaVuelta)  # grafico de vuelta
