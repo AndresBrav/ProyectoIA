@@ -247,7 +247,7 @@ class AgenteComprador:
                     self.Ruta4FidelAranibar.get_pasaje()
                 )
             self.cambiarEstadoViajeIda()
-                # print()
+            # print()
         else:
             detalles = tk.Tk()
             # Establecer la posición inicial de la ventana
@@ -485,7 +485,7 @@ class AgenteComprador:
         if (
             (dinero_Disponible > 0)
             and (tiempoUsado < tiempoIngresado)
-            and (dineroGastado < dinero_Disponible)
+            and (dineroGastado <= dinero_Disponible)
             and (precioProducto < dinero_Disponible)
             and (self.ObtenerEstadoViajeIda() == True)
         ):
@@ -501,7 +501,7 @@ class AgenteComprador:
             detalles.geometry("400x300")
             # Mensajes
             mensaje1 = "Compraste Exitosamente el producto : " + productoAcomprar
-            mensaje2=  "El precio del producto es "+str(precioProducto)
+            mensaje2 = "El precio del producto es " + str(precioProducto)
 
             # Etiquetas con los mensajes
             label1 = tk.Label(detalles, text=mensaje1)
@@ -521,7 +521,8 @@ class AgenteComprador:
             detalles.geometry("400x300")
             # Mensajes
             mensaje1 = (
-                "No tienes dinero o tiempo para  comprar el producto : " + productoAcomprar
+                "No tienes dinero o tiempo para  comprar el producto : "
+                + productoAcomprar
             )
 
             # Etiquetas con los mensajes

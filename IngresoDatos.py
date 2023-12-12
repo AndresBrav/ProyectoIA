@@ -236,7 +236,7 @@ primerRutaVuelta, segundaRutaVuelta = agentecompra.DesplazamientoVuelta()
 dineroGastado = agentecompra.obteneDineroGastado()
 tiempoUsado = agentecompra.ObtenerTiempoUsado()
 
-# Crear la ventana principal de los detalles de compra que se va hacer
+# Crear la ventana principal de los detalles de compra que  se va hacer
 detalles = tk.Tk()
 # Establecer la posición inicial de la ventana
 detalles.geometry("+1100+300")
@@ -277,6 +277,6 @@ label7.pack()
 # Iniciar el bucle de eventos
 detalles.mainloop()
 
-cargarGrafico(primerRuta,segundaRuta)
+cargarGrafico(primerRuta,segundaRuta)#grafico de ida (ruta1,ruta5LaPampa)
 
-cargarGraficoVuelta(primerRutaVuelta, segundaRutaVuelta)
+cargarGraficoVuelta(primerRutaVuelta, segundaRutaVuelta) #grafico de vuelta
